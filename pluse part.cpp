@@ -66,4 +66,46 @@
 // 关键字：friend
 // 三种实现：1全局函数做友元，2类做友元，3成员函数做友元。
 //
+// 运算符重载
+// 概念：对已经存在的运算符重新进行定义，以适应不同类型数据的运算。
+// 号运算符让两个person数据相加如重载加
+// class person {
+// public:
+//     string M_name;
+//     int M_age;
+//     Person(string name,int age) {
+//         this->M_name=name;
+//         this->M_age=age;
+//     }
+//     Person operate+(const Person &p)
+//     {
+//         Person temp;
+//         temp.M_age=this->M_age+p.M_age;
+//         return temp;
+//     }
+// };
+// int main() {
+//     person p1("zhangsan",10);
+//     person p2("lisi",20);
+//     person p3=p1+p2;
+//
+// }
+// 重载也可用全局函数实现如
+// Person operator+(const Person& p1,const Person& p2)
+// {}
+//
+// 函数调用运算符的重载，（）又称为仿函数。
+//
+//
+// 继承
+// 作用：利用继承技术，减少重复代码。
+// 语法：class A:class B;
+// A为子类或者派生类
+// B为父类或者基类
+// 子类成员分为两部分：一部分自己的，一部分父类那里继承过来的。
+// 继承方式一共三类：公共继承（public-public,protect-protect,private-不可见），
+//             保护继承（public-protect,protect-protect,private-不可见），
+//             私有继承（public-private，protect-private,private-不可见）
+//
+//
 //

@@ -178,4 +178,24 @@ int main() {
 纯虚析构语法：virtual ~类名（）=0；
            类名：：~类名（）{}
 
+文件操作
+文件分为两类：1文本文件以ASCII码形式存储在计算机
+           2二进制文件以二进制形式存储计算机
+文件操作的三大类型：ofstream：写操作
+               ifstream：读操作
+               fstream：读写操作
+文本文件
+写文件：步骤1包含头文件#include<fstream>
+2创建流对象 ofstream ofs；
+3打开文件 ofs.open("文件路径"，打开方式)；
+4写数据ofs<<"写入的数据"；
+5关闭文件 ofs.close();
+
+文件打开方式1iOS：：in 为读文件而打开
+2，iOS：：out为写文件而打开
+3，iOS：：ate 初始位置：文件尾部
+4，iOS：：app 追加方式写文件
+5,ios::turnc 如果文件存在先删除在创建
+6，iOS：：binary 二进制方式
+
 

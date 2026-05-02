@@ -38,5 +38,13 @@ WorkerManager::WorkerManager() {
   cout << "********************************************" << endl;
   cout << endl;
  }
+//退出系统
+void WorkerManager::ExitSystem() {
+ cout<<"欢迎下次使用"<<endl;
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ cout << "请按enter键继续..." << endl;
+ cin.get();
+}
+
 
 WorkerManager::~WorkerManager(){}

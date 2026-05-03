@@ -11,4 +11,5 @@ public:
     virtual void showInfo();
     //获取岗位
     virtual string getDeptName();
+
 };

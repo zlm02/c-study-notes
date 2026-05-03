@@ -9,8 +9,9 @@ public:
     WorkerManager();
     //展示菜单
     void Show_Menu();
-
+    //退出
     void ExitSystem();
+
 
 
 

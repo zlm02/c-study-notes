@@ -20,9 +20,6 @@
 WorkerManager::WorkerManager() {
 
 }
-
-
-
  void WorkerManager::Show_Menu()
  {
   cout << "********************************************" << endl;

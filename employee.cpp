@@ -14,4 +14,5 @@ Employee::Employee(int id,string name,int dId) {
 //获取岗位
 string Employee::getDeptName() {
     return string("员工");
+
 }

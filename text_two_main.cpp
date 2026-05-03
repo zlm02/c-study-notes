@@ -1,9 +1,16 @@
 #include<iostream>
 using namespace std;
 #include"text_two.h"
+#include"worker.h"
+#include"employee.h"
 
 int main() {
-    //实例化对象
+    //测试：
+    Worker *worker=NULL;
+    worker=new Employee(1,"张三",1);
+    worker->showInfo();
+
+       //实例化对象
     WorkerManager wm;
     int choice=0;
     while (true) {

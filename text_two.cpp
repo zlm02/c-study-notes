@@ -136,5 +136,4 @@ WorkerManager::~WorkerManager(){
   delete[] this->m_EmpArray;
   this->m_EmpArray=NULL;
  }
-
 };

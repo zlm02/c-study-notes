@@ -18,8 +18,12 @@
 #include"text_two.h"
 
 WorkerManager::WorkerManager() {
+ //初始化属性
+ this->m_EmpNum=0;
+ this->m_EmpArray=NULL;
 
 }
+//展示菜单
  void WorkerManager::Show_Menu()
  {
   cout << "********************************************" << endl;
@@ -41,7 +45,96 @@ void WorkerManager::ExitSystem() {
  cin.ignore(numeric_limits<streamsize>::max(), '\n');
  cout << "请按enter键继续..." << endl;
  cin.get();
+ exit(0);//退出程序
+}
+//添加职工
+void WorkerManager::Add_Emp() {
+ cout<<"请输入添加职工数量："<<endl;
+ int addNum=0;
+ cin>>addNum;
+ if (addNum>0) {
+  //添加职工
+  //计算添加空间大小
+  int newSize=this->m_EmpNum+addNum;//新空间人数=原来记录人数+新添加人数。
+  //申请新空间
+  Worker **newSpace= new Worker*[newSize];
+  //将原来空间下的数据，拷贝到新空间
+  if (this->m_EmpArray!=NULL) {
+   for (int i=0;i<this->m_EmpNum;i++) {
+    newSpace[i]=this->m_EmpArray[i];
+   }
+  }
+  //添加新数据
+  for (int i=0;i<addNum;i++) {
+   int id;
+   string name;
+   int dSelect;//部门选择
+   cout<<"请输入第"<<i+1<<"个职工编号:"<<endl;
+   cin>>id;
+   cout<<"请输入第"<<i+1<<"个职工姓名:"<<endl;
+   cin>>name;
+   cout<<"请输入第"<<i+1<<"个职工部门编号:"<<endl<<endl;
+   cout<<"1.普通员工"<<endl;
+   cout<<"2.经理"<<endl;
+   cout<<"3.老板"<<endl;
+   cin>>dSelect;
+   Worker *worker=NULL;
+   switch (dSelect){
+    case 1:
+     worker=new Employee(id,name,1);
+     break;
+    case 2:
+     worker=new Manager(id,name,2);
+     break;
+    case 3:
+     worker=new Boss(id,name,3);
+     break;
+    default:
+     cout<<"部门编号输入错误"<<endl;
+     break;
+   }
+   //将新添加的职工，添加到职工数组中
+   newSpace[this->m_EmpNum+i]=worker;
+  }
+  //释放原来空间
+  delete[] this->m_EmpArray;
+  //将新空间赋值给职工数组指针
+  this->m_EmpArray=newSpace;
+  //更新职工人数
+  this->m_EmpNum=newSize;
+  //提示添加成功
+  cout<<"成功添加"<<addNum<<"个职工"<<endl;
+  //保存数据到文件中
+  this->save();
+
+ }
+ else {
+  cout<<"添加职工数量输入错误"<<endl;
+ }
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ cout << "请按enter键返回菜单" << endl;
+ cin.get();
 }
 
+//保存文件
+void WorkerManager::save() {
+ ofstream ofs;
+ ofs.open(FILENAME,ios::out);//输出方式打开文件--写文件
+ //将每个数据写入文件
+ for (int i=0;i<this->m_EmpNum;i++) {
+  ofs<<this->m_EmpArray[i]->m_id<<" "
+     <<this->m_EmpArray[i]->m_Name<<" "
+     <<this->m_EmpArray[i]->m_DeptId<<endl;
+ }
+ //关闭文件
+ ofs.close();
+}
 
-WorkerManager::~WorkerManager(){}
+WorkerManager::~WorkerManager(){
+ //释放职工数组
+ if (this->m_EmpArray!=NULL) {
+  delete[] this->m_EmpArray;
+  this->m_EmpArray=NULL;
+ }
+
+};

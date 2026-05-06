@@ -48,7 +48,23 @@ WorkerManager::WorkerManager() {
   ifs.close();
   return;
  }
+ //3、文件存在 数据存在
+ int num=this->get_EmpNum();
+ cout<<num<<"个职工"<<endl;
+ this->m_EmpNum=num;
 
+ //开辟职工数组空间
+ this->m_EmpArray=new Worker*[this->m_EmpNum];
+ //将文件数据存到数组中
+ this->init_Emp();
+
+ //测试职工数组是否初始化成功
+ // for (int i=0;i<this->m_EmpNum;i++) {
+ //  cout<<"职工编号"<<this->m_EmpArray[i]->m_id
+ //  <<"职工姓名"<<this->m_EmpArray[i]->m_Name
+ //  <<"部门编号"<<this->m_EmpArray[i]->m_DeptId
+ //  <<endl;
+ //  }
 }
 //展示菜单
  void WorkerManager::Show_Menu()
@@ -158,6 +174,52 @@ void WorkerManager::save() {
  //关闭文件
  ofs.close();
 }
+
+
+//统计文件中人数
+int WorkerManager::get_EmpNum() {
+ ifstream ifs;
+ ifs.open(FILENAME,ios::in);//打开文件,读
+ int id;
+ string name;
+ int deptId;
+ int num=0;
+
+ while (ifs>>id && ifs>>name && ifs>>deptId) {
+  //统计人数
+  num++;
+ }
+ ifs.close();
+ return num;
+}
+
+//初始化职工数组
+void WorkerManager::init_Emp() {
+ ifstream ifs;
+ ifs.open(FILENAME,ios::in);//打开文件,读
+ int id;
+ string name;
+ int deptId;
+ int index=0;
+ while (ifs>>id && ifs>>name && ifs>>deptId) {
+  Worker *worker=NULL;
+  if (deptId==1) //普通员工
+  {
+   worker = new Employee(id,name,deptId);
+  }
+  else if (deptId==2) //经理
+  {
+   worker = new Manager(id,name,deptId);
+  }
+  else //老板
+  {
+   worker = new Boss(id,name,deptId);
+  }
+  this ->m_EmpArray[index++]=worker;
+ }
+ ifs.close();//关闭文件
+}
+
 
 WorkerManager::~WorkerManager(){
  //释放职工数组

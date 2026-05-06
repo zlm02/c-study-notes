@@ -27,9 +27,11 @@ public:
     void save();
     //判断文件是否为空 标志
     bool m_FileIsEmpty;
+    //统计文件中人数
+    int get_EmpNum();
+    //初始化职工数组
+    void init_Emp();
 
-
-
-
+    //析构函数
     ~WorkerManager();
 };

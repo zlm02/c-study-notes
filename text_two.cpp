@@ -18,9 +18,21 @@
 #include"text_two.h"
 
 WorkerManager::WorkerManager() {
- //初始化属性
- this->m_EmpNum=0;
- this->m_EmpArray=NULL;
+ //1\文件不存在
+ ifstream ifs;
+ ifs.open("FILENAME",ios::in);//打开文件，判断文件是否存在
+ if (!ifs.is_open()) {
+  cout<<"文件不存在"<<endl;
+  //初始化属性
+  //初始化职工人数为0
+  this->m_EmpNum=0;
+  //初始化职工数组指针为空NULL
+  this->m_EmpArray=NULL;
+  //初始化文件是否为空为true
+  this->m_FileIsEmpty=true;
+  ifs.close();
+  return;
+ }
 
 }
 //展示菜单

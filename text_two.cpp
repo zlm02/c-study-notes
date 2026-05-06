@@ -18,12 +18,27 @@
 #include"text_two.h"
 
 WorkerManager::WorkerManager() {
- //1\文件不存在
+ //1、文件不存在
  ifstream ifs;
- ifs.open("FILENAME",ios::in);//打开文件，判断文件是否存在
+ ifs.open(FILENAME,ios::in);//打开文件，判断文件是否存在
  if (!ifs.is_open()) {
   cout<<"文件不存在"<<endl;
   //初始化属性
+  //初始化职工人数为0
+  this->m_EmpNum=0;
+  //初始化职工数组指针为空NULL
+  this->m_EmpArray=NULL;
+  //初始化文件是否为空为true
+  this->m_FileIsEmpty=true;
+  ifs.close();
+  return;
+ }
+ //2、文件存在 数据为空
+ char ch;
+ ifs>>ch;
+ if (ifs.eof()) {
+  //文件为空
+  cout<<"文件为空"<<endl;
   //初始化职工人数为0
   this->m_EmpNum=0;
   //初始化职工数组指针为空NULL
@@ -114,6 +129,8 @@ void WorkerManager::Add_Emp() {
   this->m_EmpArray=newSpace;
   //更新职工人数
   this->m_EmpNum=newSize;
+  //更新文件是否为空标志
+  this->m_FileIsEmpty=false;
   //提示添加成功
   cout<<"成功添加"<<addNum<<"个职工"<<endl;
   //保存数据到文件中

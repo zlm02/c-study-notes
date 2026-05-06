@@ -9,6 +9,7 @@ using namespace std;
 #include"boss.h"
 #include<fstream>
 #define FILENAME "empFile.txt"
+#include<stdlib.h>
 
 class WorkerManager {
 public:
@@ -31,6 +32,9 @@ public:
     int get_EmpNum();
     //初始化职工数组
     void init_Emp();
+
+    //显示职工信息
+    void Show_Emp();
 
     //析构函数
     ~WorkerManager();

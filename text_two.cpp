@@ -221,6 +221,26 @@ void WorkerManager::init_Emp() {
 }
 
 
+//显示职工信息
+void WorkerManager::Show_Emp() {
+ //判断是否为空
+ if (this->m_FileIsEmpty==true) {
+  cout<<"文件不存在或者记录为空"<<endl;
+ }
+ else {
+  for (int i=0;i<m_EmpNum;i++) {
+   //多态调用程序接口
+   this->m_EmpArray[i]->showInfo();
+  }
+ }
+ //按任意键后清屏
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ cout<<"请任意键返回菜单"<<endl;
+ cin.get();  // 等待用户按键
+ system("cls");
+
+}
+
 WorkerManager::~WorkerManager(){
  //释放职工数组
  if (this->m_EmpArray!=NULL) {

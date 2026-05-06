@@ -34,6 +34,7 @@ int main() {
                 wm.Add_Emp();
                 break;
             case 2://显示职工信息
+                wm.Show_Emp();
                 break;
             case 3://删除离职职工
                 break;

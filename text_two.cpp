@@ -22,7 +22,7 @@ WorkerManager::WorkerManager() {
  ifstream ifs;
  ifs.open(FILENAME,ios::in);//打开文件，判断文件是否存在
  if (!ifs.is_open()) {
-  cout<<"文件不存在"<<endl;
+  //cout<<"文件不存在"<<endl;
   //初始化属性
   //初始化职工人数为0
   this->m_EmpNum=0;
@@ -38,7 +38,7 @@ WorkerManager::WorkerManager() {
  ifs>>ch;
  if (ifs.eof()) {
   //文件为空
-  cout<<"文件为空"<<endl;
+  //cout<<"文件为空"<<endl;
   //初始化职工人数为0
   this->m_EmpNum=0;
   //初始化职工数组指针为空NULL
@@ -50,13 +50,14 @@ WorkerManager::WorkerManager() {
  }
  //3、文件存在 数据存在
  int num=this->get_EmpNum();
- cout<<num<<"个职工"<<endl;
+ //cout<<num<<"个职工"<<endl;
  this->m_EmpNum=num;
 
  //开辟职工数组空间
  this->m_EmpArray=new Worker*[this->m_EmpNum];
  //将文件数据存到数组中
  this->init_Emp();
+ this->m_FileIsEmpty=(this->m_EmpNum==0);
 
  //测试职工数组是否初始化成功
  // for (int i=0;i<this->m_EmpNum;i++) {
@@ -224,7 +225,7 @@ void WorkerManager::init_Emp() {
 //显示职工信息
 void WorkerManager::Show_Emp() {
  //判断是否为空
- if (this->m_FileIsEmpty==true) {
+ if (this->m_FileIsEmpty) {
   cout<<"文件不存在或者记录为空"<<endl;
  }
  else {
@@ -242,6 +243,38 @@ void WorkerManager::Show_Emp() {
 }
 //删除职工
 void WorkerManager::Del_Emp() {
+ cout << "调试信息：m_FileIsEmpty = " << (this->m_FileIsEmpty ? "true" : "false") << endl;
+ cout << "调试信息：m_EmpNum = " << this->m_EmpNum << endl;
+ if (this->m_FileIsEmpty) {
+  cout<<"文件不存在或者记录为空"<<endl;
+ }
+ else {
+  //按照编号删除职工
+  cout<<"请输入要删除的职工编号:"<<endl;
+  int id;
+  cin>>id;
+  int index=this->IsExist(id);
+  if (index!=-1){
+   for (int i=index;i<this->m_EmpNum-1;i++) {
+    //将删除职工后的职工，往前移动一个位置
+    this->m_EmpArray[i]=this->m_EmpArray[i+1];
+   }
+   this->m_EmpNum--;//更新职工人数
+   //数据同步到文件中
+   this->save();
+   cout<<"删除成功"<<endl;
+
+  }
+  else {
+   cout<<"删除失败，职工不存在"<<endl;
+  }
+ }
+ this->m_FileIsEmpty=(this->m_EmpNum==0);
+ //按任意键后清屏
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ cout<<"请任意键返回菜单"<<endl;
+ cin.get();  // 等待用户按键
+ system("cls");
 
 }
 //判断员工是否存在，存在返回在数组中位置，不存在返回-1
@@ -254,6 +287,7 @@ int WorkerManager::IsExist(int id) {
    break;
   }
  }
+ return index;
 
 }
 

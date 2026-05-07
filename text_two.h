@@ -35,6 +35,10 @@ public:
 
     //显示职工信息
     void Show_Emp();
+    //删除员工
+    void Del_Emp();
+    //判断员工是否存在，存在返回在数组中位置，不存在返回-1
+    int IsExist(int id);
 
     //析构函数
     ~WorkerManager();

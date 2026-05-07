@@ -240,6 +240,22 @@ void WorkerManager::Show_Emp() {
  system("cls");
 
 }
+//删除职工
+void WorkerManager::Del_Emp() {
+
+}
+//判断员工是否存在，存在返回在数组中位置，不存在返回-1
+int WorkerManager::IsExist(int id) {
+ int index=-1;
+ for (int i=0;i<this->m_EmpNum;i++) {
+  if (this->m_EmpArray[i]->m_id==id) {
+   //找到职工
+   index=i;
+   break;
+  }
+ }
+
+}
 
 WorkerManager::~WorkerManager(){
  //释放职工数组

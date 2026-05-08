@@ -115,6 +115,31 @@ void WorkerManager::Add_Emp() {
    int dSelect;//部门选择
    cout<<"请输入第"<<i+1<<"个职工编号:"<<endl;
    cin>>id;
+   
+   // 检查编号是否已存在
+   bool isDuplicate = false;
+   // 检查当前已添加的员工
+   for (int j = 0; j < this->m_EmpNum + i; j++) {
+    if (newSpace[j]->m_id == id) {
+     isDuplicate = true;
+     break;
+    }
+   }
+   
+   // 如果编号已存在，要求重新输入
+   while (isDuplicate || this->IsExist(id) != -1) {
+    cout << "该职工编号已存在，请重新输入:" << endl;
+    cin >> id;
+    isDuplicate = false;
+    // 重新检查当前已添加的员工
+    for (int j = 0; j < this->m_EmpNum + i; j++) {
+     if (newSpace[j]->m_id == id) {
+      isDuplicate = true;
+      break;
+     }
+    }
+   }
+   
    cout<<"请输入第"<<i+1<<"个职工姓名:"<<endl;
    cin>>name;
    cout<<"请输入第"<<i+1<<"个职工部门编号:"<<endl<<endl;

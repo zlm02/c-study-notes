@@ -288,7 +288,64 @@ int WorkerManager::IsExist(int id) {
   }
  }
  return index;
+}
 
+
+void WorkerManager::Mod_Emp() {
+ if (this->m_FileIsEmpty) {
+  cout<<"文件不存在或者记录为空"<<endl;
+ }
+ else {
+  cout<<"请输入要修改的职工编号:"<<endl;
+  int id;
+  cin>>id;
+  int ret=this->IsExist(id);
+  if (ret!=-1) {
+   //找到员工编号；
+   delete this->m_EmpArray[ret];
+   int newId=0;
+   string newName=" ";
+   int newDeptId=0;
+   cout<<"查到职工编号为"<<id<<"的职工"<<endl;
+   cout<<"请输入新的职工编号:"<<endl;
+   cin>>newId;
+   cout<<"请输入新的职工姓名:"<<endl;
+   cin>>newName;
+   cout<<"请输入新的职工岗位:"<<endl;
+   cout<<"1.普通员工"<<endl;
+   cout<<"2.经理"<<endl;
+   cout<<"3.老板"<<endl;
+   cin>>newDeptId;
+   Worker *worker=NULL;
+   switch (newDeptId) {
+    case 1:
+     worker=new Employee(newId,newName,newDeptId);
+     break;
+    case 2:
+     worker=new Manager(newId,newName,newDeptId);
+     break;
+    case 3:
+     worker=new Boss(newId,newName,newDeptId);
+     break;
+    default:
+     cout<<"岗位输入错误"<<endl;
+     break;
+   }
+   //更新数据到数组
+   this->m_EmpArray[ret]=worker;
+   cout<<"修改成功"<<endl;
+   //保存到文件中
+   this->save();
+  }
+  else {
+   cout<<"修改失败，职工不存在"<<endl;
+  }
+ }
+ //按任意键后清屏
+ cin.ignore(numeric_limits<streamsize>::max(), '\n');
+ cout<<"请任意键返回菜单"<<endl;
+ cin.get();  // 等待用户按键
+ system("cls");
 }
 
 WorkerManager::~WorkerManager(){

@@ -39,6 +39,8 @@ public:
     void Del_Emp();
     //判断员工是否存在，存在返回在数组中位置，不存在返回-1
     int IsExist(int id);
+    //修改员工信息
+    void Mod_Emp();
 
     //析构函数
     ~WorkerManager();

@@ -435,6 +435,54 @@ void WorkerManager::Find_Emp() {
     system("cls");
 }
 
+//排序员工
+void WorkerManager::Sort_Emp() {
+    if (this->m_FileIsEmpty) {
+        cout << "文件不存在或者记录为空" << endl;
+        //按任意键后清屏
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        cout << "请任意键返回菜单" << endl;
+        cin.get(); // 等待用户按键
+        system("cls");
+    }
+    else {
+        cout << "请选择排序方式：" << endl;
+        cout << "1.按照编号升序排序" << endl;
+        cout << "2.按照编号降序排序" << endl;
+        int choice = 0;
+        cin >> choice;
+        for (int i = 0; i < this->m_EmpNum; i++) {
+            int MinorMax = i; //声明最小值或最大值下标
+            for (int j = i + 1; j < this->m_EmpNum; j++) {
+                if (choice == 1) {
+                    if (this->m_EmpArray[j]->m_id < this->m_EmpArray[MinorMax]->m_id) {
+                        MinorMax = j;
+                    }
+                }
+                else //降序
+                {
+                    if (this->m_EmpArray[j]->m_id > this->m_EmpArray[MinorMax]->m_id) {
+                        MinorMax = j;
+                    }
+                }
+
+            }
+            //交换数据
+            if (i!=MinorMax) {
+                Worker * temp=this->m_EmpArray[i];
+                this->m_EmpArray[i] = this->m_EmpArray[MinorMax];
+                this->m_EmpArray[MinorMax] = temp;
+            }
+        }
+        cout << "排序完成,排序结果为" << endl;
+        this->save();//保存数据
+        this->Show_Emp();//展示职工
+
+    }
+
+}
+
+
 
 
 WorkerManager::~WorkerManager() {

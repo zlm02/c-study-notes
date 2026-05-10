@@ -4,12 +4,13 @@
 using namespace std;
 #include"worker.h"
 
-class Employee:public Worker {
+class Employee : public Worker {
 public:
-    Employee(int id,string name,int dId);
+    Employee(int id, string name, int dId);
+
     //显示个人信息
     virtual void showInfo();
+
     //获取岗位
     virtual string getDeptName();
-
 };

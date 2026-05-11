@@ -58,6 +58,9 @@ public:
     //排序员工
     void Sort_Emp();
 
+    //清空文件
+    void Clear_File();
+
 
 
     //析构函数

@@ -482,6 +482,38 @@ void WorkerManager::Sort_Emp() {
 
 }
 
+//清空文件
+void WorkerManager::Clear_File() {
+    cout<<"确定清空？："<<endl;
+    cout<<"1、确定"<<endl;
+    cout<<"2、返回"<<endl;
+    int choice=0;
+    cin>>choice;
+    if (choice == 1) {
+        //清空文件
+        ofstream ofs(FILENAME,ios::trunc);//删除文件后重新创建
+        ofs.close();
+        if (this->m_EmpArray!=NULL) {
+            for (int i = 0; i < this->m_EmpNum; i++) {
+                //删除堆区每个职工对象
+                delete this->m_EmpArray[i];
+                this->m_EmpArray[i]=NULL;
+            }
+            //删除堆区数组指针
+            delete[] this->m_EmpArray;
+            this->m_EmpArray = NULL;
+            this->m_EmpNum = 0;
+            this->m_FileIsEmpty = true;
+        }
+        cout<<"清空成功"<<endl;
+    }
+    //按任意键清屏
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    cout << "请任意键返回菜单" << endl;
+    cin.get(); // 等待用户按键
+    system("cls");
+}
+
 
 
 

@@ -520,7 +520,13 @@ void WorkerManager::Clear_File() {
 WorkerManager::~WorkerManager() {
     //释放职工数组
     if (this->m_EmpArray != NULL) {
+        for (int i = 0; i < this->m_EmpNum; i++) {
+            if (this->m_EmpArray[i] != NULL) {
+                delete this->m_EmpArray[i];
+            }
+        }
         delete[] this->m_EmpArray;
         this->m_EmpArray = NULL;
+
     }
 };

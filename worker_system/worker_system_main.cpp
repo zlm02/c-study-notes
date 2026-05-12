@@ -1,6 +1,7 @@
-#include<iostream>
+
+//#include<iostream>
 using namespace std;
-#include"text_two.h"
+#include"worker_Manager.h"
 #include"worker.h"
 #include"employee.h"
 #include"manager.h"
@@ -19,7 +20,7 @@ int main() {
     // delete worker;
 
 
-       //实例化对象
+    //实例化对象
     WorkerManager wm;
     int choice=0;
     while (true) {

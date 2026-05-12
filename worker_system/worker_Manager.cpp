@@ -15,7 +15,8 @@
 按照编号排序：按照职工编号，进行排序，排序规则由用户指定
 清空所有文档：清空文件中记录的所有职工信息 （清空前需要再次确认，防止误删）
  */
-#include"text_two.h"
+#include"worker_Manager.h"
+
 
 WorkerManager::WorkerManager() {
     //1、文件不存在

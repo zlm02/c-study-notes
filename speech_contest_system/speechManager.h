@@ -8,6 +8,9 @@ class SpeechManager {
   public:
   //构造函数
   SpeechManager();
+
+  //菜单功能
+  void showMenu();
   //析构函数
   ~SpeechManager();
 };

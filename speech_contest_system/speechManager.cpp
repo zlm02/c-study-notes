@@ -1,5 +1,23 @@
-//
-// Created by Lenovo on 2026/5/12.
-//
 
 #include "speechManager.h"
+#include "speechManager.h"
+
+//构造函数
+SpeechManager::SpeechManager() {
+}
+//菜单功能
+void SpeechManager::showMenu() {
+  cout<<"************************************"<<endl;
+  cout<<"*********** 欢迎参加演讲比赛 ***********"<<endl;
+  cout<<"*********** 1.开始演讲比赛 ************"<<endl;
+  cout<<"*********** 2.查看往届比赛 ************"<<endl;
+  cout<<"*********** 3.清空比赛记录 ************"<<endl;
+  cout<<"*********** 0.退出系统 ***************"<<endl;
+  cout<<endl;
+
+
+}
+//析构函数
+SpeechManager::~SpeechManager() {
+}
+

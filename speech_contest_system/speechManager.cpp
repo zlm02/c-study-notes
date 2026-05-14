@@ -1,6 +1,6 @@
 
 #include "speechManager.h"
-#include "speechManager.h"
+
 
 //构造函数
 SpeechManager::SpeechManager() {
@@ -16,6 +16,14 @@ void SpeechManager::showMenu() {
   cout<<endl;
 
 
+}
+
+void SpeechManager::existSystem() {
+  cout<<"欢迎下次使用"<<endl;
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  cout << "请按enter键继续..." << endl;
+  cin.get();
+  exit(0);
 }
 //析构函数
 SpeechManager::~SpeechManager() {

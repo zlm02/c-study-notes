@@ -4,6 +4,8 @@
 
 //构造函数
 SpeechManager::SpeechManager() {
+  //初始化容器和属性
+  this->initSpeech();
 }
 //菜单功能
 void SpeechManager::showMenu() {
@@ -24,6 +26,18 @@ void SpeechManager::existSystem() {
   cout << "请按enter键继续..." << endl;
   cin.get();
   exit(0);
+}
+
+
+void SpeechManager::initSpeech() {
+  //容器置空
+  this->v1.clear();
+  this->v2.clear();
+  this->vVictory.clear();
+  this->m_Speaker.clear();
+
+  //初始化比赛轮数
+  this->m_Index = 1;
 }
 //析构函数
 SpeechManager::~SpeechManager() {

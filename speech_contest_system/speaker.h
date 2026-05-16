@@ -7,5 +7,5 @@ using namespace std;
 class Speaker {
   public:
    string m_Name;//姓名
-   doucle m_Score[2];//分数，最多两轮得分
+   double m_Score[2];//分数，最多两轮得分
 };
